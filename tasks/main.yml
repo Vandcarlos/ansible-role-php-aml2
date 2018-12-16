@@ -1,6 +1,6 @@
 ---
 - name: Install php "{{ php_version }}" from amazon-linux-extras
-  command: amazon-linux-extras install "{{ php_version }}" -y
+  command: amazon-linux-extras install php"{{ php_version }}" -y
   become: yes
   args:
     creates: /usr/bin/php
