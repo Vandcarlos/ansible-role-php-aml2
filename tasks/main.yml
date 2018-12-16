@@ -1,8 +1,4 @@
 ---
-- name: Check if php version select is valid
-  fail: Please use a valid php version
-  when: php_version not in availables_php_versions_in_amazon_linux_extras
-
 - name: Install php "{{ php_version }}" from amazon-linux-extras
   command: amazon-linux-extras install "{{ php_version }}" -y
   become: yes
