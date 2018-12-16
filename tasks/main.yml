@@ -1,0 +1,33 @@
+---
+- name: Check if php version select is valid
+  fail: Please use a valid php version
+  when: php_version not in availables_php_versions_in_amazon_linux_extras
+
+- name: Install php "{{ php_version }}" from amazon-linux-extras
+  command: amazon-linux-extras install "{{ php_version }}" -y
+  become: yes
+  args:
+    creates: /usr/bin/php
+
+- name: Install php dependencies
+  yum:
+    name:
+      - php-fpm
+      - php-mbstring
+      - php-xml
+      - php-gd
+    state: latest
+  become: yes
+
+- name: Copy php-fpm.conf to /etc/php-fpm.d/www.conf
+  template:
+    src: templates/php-fpm.conf.j2
+    dest: /etc/php-fpm.d/www.conf
+  become: yes
+
+- name: Reload php-fpm service
+  service:
+    name: php-fpm
+    state: reloaded
+    enabled: yes
+  become: yes

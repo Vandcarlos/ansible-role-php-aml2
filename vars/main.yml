@@ -1,0 +1,4 @@
+---
+availables_php_versions_in_amazon_linux_extras:
+  - '7.2'
+  - '7.1'

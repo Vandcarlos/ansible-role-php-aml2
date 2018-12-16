@@ -1,0 +1,5 @@
+---
+# defaults file for php-aml2
+php_version: '7.2'
+php_fpm_listen: 127.0.0.1:9000
+php_fpm_user: ec2-user
